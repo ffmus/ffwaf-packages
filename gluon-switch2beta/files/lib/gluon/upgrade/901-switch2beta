@@ -19,4 +19,4 @@ if (tonumber(update_enabled) == 1) then
     end
   end
 end
-os.remove('/lib/gluon/upgrade/599-switch2beta')
+os.remove('/lib/gluon/upgrade/901-switch2beta')
