@@ -1,0 +1,22 @@
+#!/usr/bin/lua
+
+local site = require 'gluon.site_config'
+local users = require 'gluon.users'
+local util = require 'gluon.util'
+
+local uci = require('luci.model.uci').cursor()
+local lutil = require 'luci.util'
+
+local update_enabled = uci.get('autoupdater','settings','enabled')
+
+if (tonumber(update_enabled) == 1) then
+  local version_file = uci.get('autoupdater','settings','version_file')
+  for line in io.lines(version_file) do
+    if string.find(line,"beta",1,true) then
+      uci:set('autoupdater','settings','branch','stable')
+      uci:save('autoupdater')
+      uci:commit('autoupdater')
+    end
+  end
+end
+os.remove('/lib/gluon/upgrade/902-switch2beta')
