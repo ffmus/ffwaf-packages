@@ -7,7 +7,7 @@ PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 
 include $(GLUONDIR)/include/package.mk
 
-define Package/gluon-switch2stable
+define Package/gluon-switch2-l2tp-exp
   SECTION:=gluon
   CATEGORY:=Gluon
   TITLE:=Switch autoupdater to l2tp-experimental
