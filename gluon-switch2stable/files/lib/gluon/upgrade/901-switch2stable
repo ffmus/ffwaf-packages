@@ -10,13 +10,8 @@ local lutil = require 'luci.util'
 local update_enabled = uci.get('autoupdater','settings','enabled')
 
 if (tonumber(update_enabled) == 1) then
-  local version_file = uci.get('autoupdater','settings','version_file')
-  for line in io.lines(version_file) do
-    if string.find(line,"beta",1,true) then
-      uci:set('autoupdater','settings','branch','stable')
-      uci:save('autoupdater')
-      uci:commit('autoupdater')
-    end
-  end
+  uci:set('autoupdater','settings','branch','stable')
+  uci:save('autoupdater')
+  uci:commit('autoupdater')
 end
 os.remove('/lib/gluon/upgrade/901-switch2stable')
