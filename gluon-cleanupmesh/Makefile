@@ -28,7 +28,7 @@ endef
 define Build/Compile
 endef
 
-define Package/gluon-ceanupmesh/install
+define Package/gluon-cleanupmesh/install
 	$(CP) ./files/* $(1)/
 endef
 
