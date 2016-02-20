@@ -1,0 +1,32 @@
+#!/usr/bin/lua
+
+local site = require 'gluon.site_config'
+local users = require 'gluon.users'
+local util = require 'gluon.util'
+
+local uci = require('luci.model.uci').cursor()
+
+local ibss_radio0_disabled = uci.get('wireless','ibss_radio0','disabled')
+local mesh_radio0_disabled = uci.get('wireless','mesh_radio0','disabled')
+
+local ibss_radio1_disabled = uci.get('wireless','ibss_radio1','disabled')
+local mesh_radio1_disabled = uci.get('wireless','mesh_radio1','disabled')
+
+local changes = false
+
+if (ibss_radio0_disabled == '0') then
+  uci.set('wireless','mesh_radio0','disabled','0')
+  changes = true
+end
+
+if (ibss_radio1_disabled == '0') then
+  uci.set('wireless','mesh_radio1','disabled','0')
+  changes = true
+end
+
+if (changes) then
+  uci.save('wireless')
+  uci.commit('wireless')
+end
+os.remove('/lib/gluon/upgrade/902-enable802')
+

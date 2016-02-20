@@ -10,5 +10,5 @@ uci:delete('network','mesh_radio0_vlan')
 uci:delete('network','mesh_radio1_vlan')                                                                                                                                 
 uci:save('network')                                                                                                                                                      
 uci:commit('network')                                                                                                                                                    
--- os.remove('/lib/gluon/upgrade/901-cleanupmesh')                                                                                                                       
+os.remove('/lib/gluon/upgrade/901-cleanupmesh')                                                                                                                       
 
