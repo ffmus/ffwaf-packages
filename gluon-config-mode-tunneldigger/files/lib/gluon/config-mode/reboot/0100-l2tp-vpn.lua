@@ -2,8 +2,6 @@ local uci = luci.model.uci.cursor()
 
 local meshvpn_enabled = uci:get('tunneldigger',uci:get_first('tunneldigger', 'broker'), 'enabled')
 
-#print(meshvpn_enabled)
-
 local i18n = require 'luci.i18n'
 local util = require 'luci.util'
 local site = require 'gluon.site_config'
