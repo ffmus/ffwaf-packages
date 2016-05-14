@@ -1,4 +1,4 @@
-#!/usr/bin/lua
+#! /usr/bin/lua
 
 local site = require 'gluon.site_config'
 local users = require 'gluon.users'
@@ -7,11 +7,12 @@ local util = require 'gluon.util'
 local uci = require('luci.model.uci').cursor()
 local lutil = require 'luci.util'
 
-local update_enabled = uci.get('autoupdater','settings','enabled')
+local update_enabled = uci.get('autoupdater', 'settings', 'enabled')
 
 if (tonumber(update_enabled) == 1) then
-  uci:set('autoupdater','settings','branch','stable')
-  uci:save('autoupdater')
-  uci:commit('autoupdater')
+    uci:set('autoupdater', 'settings', 'branch', 'stable')
+    uci:save('autoupdater')
+    uci:commit('autoupdater')
 end
+
 os.remove('/lib/gluon/upgrade/901-switch2stable')
